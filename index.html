@@ -3,13 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABID MEHMOOD | Photography Portfolio V5</title>
-    <!-- Feature 16: SEO Meta Tags -->
-    <meta name="description" content="Professional photography portfolio of ABID MEHMOOD, showcasing landscape, portrait, and drone photography from Pakistan.">
-    <meta name="keywords" content="Abid Mehmood, Pakistan Photographer, Landscape, Portrait, Drone, Architectural Photography, Weddings, Commercial">
+    <!-- CRITICAL SEO: Detailed Title -->
+    <title>ABID MEHMOOD | Professional Landscape & Drone Photographer in Pakistan</title>
     
-    <!-- Load Tailwind CSS -->
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Official portfolio of ABID MEHMOOD, a professional photographer specializing in high-altitude landscape, cultural portraiture, and commercial drone photography across Pakistan.">
+    <meta name="keywords" content="Abid Mehmood, Pakistan Photographer, Landscape Photography, Portraiture, Drone Photography, Commercial Photography, Karachi, Lahore, Islamabad, Wedding">
+    
+    <!-- Structured Data (JSON-LD) for SEO (Helps Google understand this page represents a professional) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Abid Mehmood",
+      "jobTitle": "Professional Photographer",
+      "url": "https://abidmehmood.com/#home", 
+      "sameAs": [
+        "https://www.instagram.com/abid.mehmood", 
+        "https://www.linkedin.com/in/abidmehmood"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "PK",
+        "addressLocality": "Pakistan"
+      }
+    }
+    </script>
+    
+    <!-- Load Tailwind CSS (Always loaded via CDN for single-file deployment) -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Configure Tailwind for custom colors and Inter font -->
     <script>
         tailwind.config = {
@@ -52,7 +75,7 @@
 
         /* NEW FEATURE: High-Quality Background Image & Feature 25: Parallax Effect Base */
         body {
-            /* URL points to a high-contrast, professional photography studio background */
+            /* Using a high-contrast background image */
             background-image: url('https://images.unsplash.com/photo-1542038784457-cd3494d13c7c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
             background-size: cover;
             background-position: center;
@@ -77,7 +100,7 @@
             z-index: 10;
         }
 
-        /* Feature 26: Process Timeline Styles */
+        /* Process Timeline Styles */
         .process-step {
             position: relative;
             padding-left: 2rem;
@@ -99,7 +122,7 @@
             z-index: 20;
         }
 
-        /* Feature 28: Lanyard Style Skill Badges */
+        /* Lanyard Style Skill Badges */
         .skill-badge {
             background-color: var(--bg-secondary);
             color: var(--accent);
@@ -120,8 +143,6 @@
         .gallery-item:hover img { transform: scale(1.05); }
         .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s; padding: 1rem; text-align: center; }
         .gallery-item:hover .overlay { opacity: 1; }
-        .testimonial-slider { scroll-snap-type: x mandatory; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-        .testimonial-slide { scroll-snap-align: start; flex: 0 0 100%; }
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-primary); z-index: 10001; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-out; }
         .loader-spinner { border: 8px solid var(--bg-secondary); border-top: 8px solid var(--accent); border-radius: 50%; width: 60px; height: 60px; animation: spin 1.5s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -131,7 +152,7 @@
         #floating-cta { position: fixed; bottom: 20px; right: 20px; z-index: 50; padding: 1rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 9999px; background-color: var(--accent); color: white; box-shadow: 0 4px 10px var(--shadow-color); transition: transform 0.2s, background-color 0.2s; display: flex; align-items: center; }
         #floating-cta:hover { transform: scale(1.05) translateY(-2px); opacity: 0.95; }
 
-        /* Feature 27: Pricing Calculator Specific Styles */
+        /* Pricing Calculator Specific Styles */
         input[type="range"]::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
@@ -166,17 +187,17 @@
     <!-- Feature 3 & 4: Header & Navigation (Fixed at the top) -->
     <header id="main-header" class="fixed top-0 left-0 w-full z-50 bg-primary-bg/95 backdrop-blur-sm transition duration-300 border-b border-secondary-bg">
         <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-            <a href="#home" class="text-3xl font-extrabold text-accent tracking-widest hover:text-text-color transition duration-200">ABID.</a>
+            <a href="#home" class="text-3xl font-extrabold text-accent tracking-widest hover:text-text-color transition duration-200" aria-label="Abid Mehmood Portfolio Home">ABID.</a>
             
             <!-- Desktop Navigation -->
             <div class="space-x-4 hidden lg:flex">
                 <a href="#home" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Home</a>
                 <a href="#gallery" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Gallery</a>
                 <a href="#stats" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Achievements</a> 
-                <a href="#process" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">My Process</a> <!-- NEW -->
+                <a href="#process" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">My Process</a> 
                 <a href="#blog" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Blog/Updates</a>
                 <a href="#about" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">About</a>
-                <a href="#hire-me" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Hire Me</a> <!-- NEW/Updated -->
+                <a href="#hire-me" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Hire Me</a> 
             </div>
             
             <!-- Mobile Menu Button & Feature 5: Dark/Light Mode Toggle -->
@@ -213,7 +234,7 @@
             <div class="absolute inset-0 bg-black opacity-75"></div> 
             <div class="relative z-10 max-w-5xl mx-auto py-24 md:py-32 lg:py-48 bg-primary-bg/80 p-6 rounded-xl backdrop-blur-sm shadow-2xl border border-accent/20">
                 <p class="text-xl font-light text-accent mb-4 uppercase tracking-widest">ABID's Lens</p>
-                <!-- Feature 8: Typewriter Effect Target -->
+                <!-- SEO: Primary H1 Tag -->
                 <h1 class="text-5xl sm:text-7xl font-extrabold mb-6 leading-tight text-white shadow-2xl">
                     Visual Storytelling Through <span id="typewriter-text" class="text-accent typewriter"></span>
                 </h1>
@@ -231,7 +252,8 @@
         <!-- ============================================== -->
         <section id="gallery" class="page-content hidden py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
-                <h2 class="text-4xl font-bold text-center mb-6 border-b-2 border-accent inline-block pb-2 mx-auto">The Gallery</h2>
+                <!-- SEO: Secondary H2 Tag for Gallery Section -->
+                <h2 class="text-4xl font-bold text-center mb-6 border-b-2 border-accent inline-block pb-2 mx-auto">The Photography Gallery</h2>
                 <p class="text-center mb-10 text-lg text-gray-400">Explore my curated projects across different visual disciplines.</p>
 
                 <!-- Feature 1: Category Filter Buttons (Modern Tab Style) -->
@@ -249,35 +271,35 @@
 
                     <!-- CONTENT: Gallery Items (Placeholders) -->
                     <div class="gallery-item" data-category="landscape" data-src="https://placehold.co/1200x800/40a08e/ffffff?text=Northern+Pakistan+-+Full+Resolution" data-caption="Mountain Passes: The dramatic beauty of Pakistan's north. (Landscape)">
-                        <img src="https://placehold.co/600x400/40a08e/ffffff?text=Northern+Pakistan" alt="Himalayan Mountains" class="rounded-lg" loading="lazy">
+                        <img src="https://placehold.co/600x400/40a08e/ffffff?text=Northern+Pakistan" alt="High-altitude landscape photography of Northern Pakistan" class="rounded-lg" loading="lazy">
                         <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Mountain Passes</h3><span class="text-accent text-xs mt-2">Landscape</span></div>
                     </div>
                     <div class="gallery-item" data-category="portrait" data-src="https://placehold.co/800x1200/8d49a1/ffffff?text=Candid+Shot+-+Full+Resolution" data-caption="Candid Gaze: A study in contrast and emotion. (Portrait)">
-                        <img src="https://placehold.co/600x400/8d49a1/ffffff?text=Candid+Shot" alt="Monochrome Portrait" class="rounded-lg" loading="lazy">
+                        <img src="https://placehold.co/600x400/8d49a1/ffffff?text=Candid+Shot" alt="Monochrome candid portrait photography" class="rounded-lg" loading="lazy">
                         <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Candid Gaze</h3><span class="text-accent text-xs mt-2">Portrait</span></div>
                     </div>
                     <div class="gallery-item" data-category="architecture" data-src="https://placehold.co/1200x800/2a52be/ffffff?text=Modern+Building+-+Full+Resolution" data-caption="Concrete Symmetry: Lines and light in Islamabad. (Architecture)">
-                        <img src="https://placehold.co/600x400/2a52be/ffffff?text=Modern+Building" alt="Geometric Building" class="rounded-lg" loading="lazy">
+                        <img src="https://placehold.co/600x400/2a52be/ffffff?text=Modern+Building" alt="Geometric modern building photography in Islamabad" class="rounded-lg" loading="lazy">
                         <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Concrete Symmetry</h3><span class="text-accent text-xs mt-2">Architecture</span></div>
                     </div>
                     <div class="gallery-item" data-category="drone" data-src="https://placehold.co/1200x800/000000/3b82f6?text=River+Delta+Aerial+-+Full+Resolution" data-caption="River Delta: Abstract patterns seen from above. (Drone/Aerial)">
-                        <img src="https://placehold.co/600x400/000000/3b82f6?text=River+Delta+Aerial" alt="River Delta Aerial" class="rounded-lg" loading="lazy">
+                        <img src="https://placehold.co/600x400/000000/3b82f6?text=River+Delta+Aerial" alt="Abstract aerial drone shot of a river delta" class="rounded-lg" loading="lazy">
                         <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">River Delta</h3><span class="text-accent text-xs mt-2">Drone/Aerial</span></div>
                     </div>
                     <div class="gallery-item" data-category="wedding" data-src="https://placehold.co/800x1200/e91e63/ffffff?text=Wedding+Couple+-+Full+Resolution" data-caption="The Promise: A heartfelt moment from a client's wedding. (Wedding)">
-                        <img src="https://placehold.co/600x400/e91e63/ffffff?text=Wedding+Couple" alt="Wedding Couple" class="rounded-lg" loading="lazy">
+                        <img src="https://placehold.co/600x400/e91e63/ffffff?text=Wedding+Couple" alt="Professional wedding photography of a couple" class="rounded-lg" loading="lazy">
                         <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">The Promise</h3><span class="text-accent text-xs mt-2">Wedding</span></div>
                     </div>
                     <div class="gallery-item" data-category="conceptual" data-src="https://placehold.co/1200x800/ff7f50/ffffff?text=Motion+Blur+Conceptual+-+Full+Resolution" data-caption="The Veil of Time: Long exposure conceptual work. (Conceptual)">
-                        <img src="https://placehold.co/600x400/ff7f50/ffffff?text=Motion+Blur+Conceptual" alt="Conceptual Motion Blur" class="rounded-lg" loading="lazy">
+                        <img src="https://placehold.co/600x400/ff7f50/ffffff?text=Motion+Blur+Conceptual" alt="Conceptual long exposure photography with motion blur" class="rounded-lg" loading="lazy">
                         <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">The Veil of Time</h3><span class="text-accent text-xs mt-2">Conceptual</span></div>
                     </div>
                     <div class="gallery-item" data-category="landscape" data-src="https://placehold.co/1200x800/2962ff/ffffff?text=Desert+Sunset+-+Full+Resolution" data-caption="Desert Hues: Golden hour light over the Thal Desert. (Landscape)">
-                        <img src="https://placehold.co/600x400/2962ff/ffffff?text=Desert+Sunset" alt="Desert Sunset" class="rounded-lg" loading="lazy">
+                        <img src="https://placehold.co/600x400/2962ff/ffffff?text=Desert+Sunset" alt="Thal Desert sunset landscape photo" class="rounded-lg" loading="lazy">
                         <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Desert Hues</h3><span class="text-accent text-xs mt-2">Landscape</span></div>
                     </div>
                     <div class="gallery-item" data-category="architecture" data-src="https://placehold.co/1200x800/4caf50/ffffff?text=Mughal+Architecture+-+Full+Resolution" data-caption="Mughal Detail: Intricate tile work from Lahore Fort. (Architecture)">
-                        <img src="https://placehold.co/600x400/4caf50/ffffff?text=Mughal+Architecture" alt="Mughal Architecture" class="rounded-lg" loading="lazy">
+                        <img src="https://placehold.co/600x400/4caf50/ffffff?text=Mughal+Architecture" alt="Detail photography of Mughal architecture at Lahore Fort" class="rounded-lg" loading="lazy">
                         <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Mughal Detail</h3><span class="text-accent text-xs mt-2">Architecture</span></div>
                     </div>
                 </div>
@@ -285,11 +307,11 @@
         </section>
 
         <!-- ============================================== -->
-        <!-- 3. KEY ACHIEVEMENTS (Feature 23: Statistics Counter) -->
+        <!-- 3. KEY ACHIEVEMENTS (Statistics Counter) -->
         <!-- ============================================== -->
         <section id="stats" class="page-content hidden py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-secondary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
-                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">Key Achievements</h2>
+                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">Key Achievements & Stats</h2>
                 <p class="text-center mb-10 text-lg text-gray-400 max-w-2xl mx-auto">Numbers tell a story of dedication, experience, and scale.</p>
                 
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
@@ -330,7 +352,7 @@
         </section>
 
         <!-- ============================================== -->
-        <!-- 4. NEW SECTION: MY PROCESS (Feature 26) -->
+        <!-- 4. NEW SECTION: MY PROCESS -->
         <!-- ============================================== -->
         <section id="process" class="page-content hidden py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
@@ -376,60 +398,60 @@
         <!-- ============================================== -->
         <section id="blog" class="page-content hidden py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
-                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">Latest Updates & Blog</h2>
+                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">Latest Updates & Photography Blog</h2>
                 <p class="text-center mb-10 text-lg text-gray-400 max-w-2xl mx-auto">Stay up to date with my latest projects, gear reviews, and personal insights on visual storytelling.</p>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Post 1: Latest Project -->
-                    <div class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
-                        <img src="https://placehold.co/600x300/e0f7fa/000000?text=K2+Base+Camp" alt="K2 Base Camp Expedition" class="w-full h-48 object-cover">
+                    <article class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x300/e0f7fa/000000?text=K2+Base+Camp" alt="K2 Base Camp Expedition photo summary" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6">
                             <span class="text-sm font-semibold text-accent uppercase">Expedition</span>
                             <h3 class="text-xl font-bold mt-1 mb-3">Documenting the K2 Base Camp Trek</h3>
                             <p class="text-gray-400 text-sm line-clamp-3">A four-week journey capturing the raw, untamed beauty of the Karakoram range, facing extreme conditions for the perfect shot.</p>
                             <a href="#" class="text-accent hover:text-white font-medium mt-3 inline-block text-sm">Read More &rarr;</a>
                         </div>
-                    </div>
+                    </article>
                     <!-- Post 2: Gear Review -->
-                    <div class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
-                        <img src="https://placehold.co/600x300/cfd8dc/000000?text=Gear+Review" alt="Nikon Z9 Review" class="w-full h-48 object-cover">
+                    <article class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x300/cfd8dc/000000?text=Gear+Review" alt="Nikon Z9 mirrorless camera review" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6">
                             <span class="text-sm font-semibold text-accent uppercase">Gear Review</span>
                             <h3 class="text-xl font-bold mt-1 mb-3">Nikon Z-Series: The New Standard for Landscape</h3>
                             <p class="text-gray-400 text-sm line-clamp-3">My honest thoughts on switching to mirrorless and how the Z9 has revolutionized my field work in low light and high altitudes.</p>
                             <a href="#" class="text-accent hover:text-white font-medium mt-3 inline-block text-sm">Read More &rarr;</a>
                         </div>
-                    </div>
+                    </article>
                     <!-- Post 3: Tutorial -->
-                    <div class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
-                        <img src="https://placehold.co/600x300/e1bee7/000000?text=Editing+Tips" alt="Post Processing Tutorial" class="w-full h-48 object-cover">
+                    <article class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x300/e1bee7/000000?text=Editing+Tips" alt="Photo editing tutorial image" class="w-full h-48 object-cover" loading="lazy">
                         <div class="p-6">
                             <span class="text-sm font-semibold text-accent uppercase">Tutorial</span>
                             <h3 class="text-xl font-bold mt-1 mb-3">Mastering the Dramatic Sky in Post-Processing</h3>
                             <p class="text-gray-400 text-sm line-clamp-3">Step-by-step guide to enhancing color, contrast, and detail in sunset and storm clouds using advanced masking techniques.</p>
                             <a href="#" class="text-accent hover:text-white font-medium mt-3 inline-block text-sm">Read More &rarr;</a>
                         </div>
-                    </div>
+                    </article>
                 </div>
             </div>
         </section>
 
 
         <!-- ============================================== -->
-        <!-- 6. ABOUT PAGE (With Feature 28: Skill Badges) -->
+        <!-- 6. ABOUT PAGE (With Skill Badges) -->
         <!-- ============================================== -->
         <section id="about" class="page-content hidden py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
                 <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">About ABID MEHMOOD</h2>
                 <div class="md:flex md:space-x-12 items-start">
                     <div class="w-full md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                        <img src="https://placehold.co/350x350/3b82f6/0f0f11?text=ABID" alt="ABID MEHMOOD Profile" class="rounded-xl w-64 h-64 object-cover border-4 border-accent shadow-2xl">
+                        <img src="https://placehold.co/350x350/3b82f6/0f0f11?text=ABID" alt="Official profile portrait of Abid Mehmood" class="rounded-xl w-64 h-64 object-cover border-4 border-accent shadow-2xl" loading="lazy">
                     </div>
                     <div class="w-full md:w-2/3 text-lg space-y-5">
                         <p>
                             My name is **Abid Mehmood**, and I am a professional photographer based in **Pakistan**. My journey behind the lens began over seven years ago, fueled by a passion for documenting life's fleeting moments and the stunning diversity of our world.
                         </p>
-                        <p class="font-semibold text-xl text-accent">The Philosophy: Capturing Emotional Truth</p>
+                        <h3 class="font-semibold text-xl text-accent">The Philosophy: Capturing Emotional Truth</h3>
                         <p>
                             I believe the best photographs are not just records of what the camera sees, but interpretations of what the heart feels. My work is dedicated to uncovering the emotional truth hidden beneath the surface.
                         </p>
@@ -458,7 +480,7 @@
 
 
         <!-- ============================================== -->
-        <!-- 7. HIRE ME: PRICING & INTERACTIVE CALCULATOR (Feature 27) -->
+        <!-- 7. HIRE ME: PRICING & INTERACTIVE CALCULATOR -->
         <!-- ============================================== -->
         <section id="hire-me" class="page-content hidden py-16">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
@@ -564,7 +586,7 @@
             <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-4xl font-light opacity-80 hover:opacity-100 transition z-20 p-2 rounded-full bg-black/50" aria-label="Close Lightbox">&times;</button>
             
             <div class="bg-secondary-bg rounded-lg shadow-2xl overflow-hidden relative">
-                <img id="lightbox-image" src="" alt="Full size photo" class="w-full h-auto object-contain max-h-[75vh]">
+                <img id="lightbox-image" src="" alt="Full size photo preview" class="w-full h-auto object-contain max-h-[75vh]">
                 <div class="absolute bottom-6 left-6 text-xl font-bold text-white/50 pointer-events-none">&copy; ABID.MEHMOOD</div>
                 <div class="p-4 text-center"><p id="lightbox-caption" class="text-lg text-gray-300"></p></div>
             </div>
@@ -590,6 +612,9 @@
     </button>
 
 
+    <!-- ========================================================= -->
+    <!-- CRITICAL PERFORMANCE: All JavaScript moved to the end -->
+    <!-- ========================================================= -->
     <script>
         // ==============================================
         // FEATURE 29: DEBOUNCE UTILITY FOR PERFORMANCE
@@ -608,8 +633,7 @@
         // GLOBAL SETUP & UTILITIES
         // ==============================================
         document.getElementById('year').textContent = new Date().getFullYear();
-        document.getElementById('preferred-date').min = new Date().toISOString().split('T')[0];
-
+        
         // Feature 6: Preloader Hide Logic
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
@@ -648,6 +672,7 @@
         function handleHashChange() {
             const hash = window.location.hash.substring(1) || 'home';
             showPage(hash);
+            // Scroll handling is slightly different now to account for fixed header
             if (hash !== 'home') {
                 const targetElement = document.getElementById(hash);
                 if(targetElement) {
@@ -656,6 +681,8 @@
                         behavior: 'smooth'
                     });
                 }
+            } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         }
         
@@ -803,6 +830,7 @@
 
         function checkStatsVisibility() {
             if (animationTriggered) return;
+            // Use getBoundingClientRect for accurate visibility check
             const rect = statsSection.getBoundingClientRect();
             const isInView = (rect.top <= (window.innerHeight || document.documentElement.clientHeight) && rect.bottom >= 0);
 
@@ -812,11 +840,10 @@
                     animateCounter(counter, target);
                 });
                 animationTriggered = true;
-                // Since this is called by debouncedUpdateScrollEffects, no need to remove separate listener.
             }
         }
         
-        window.addEventListener('load', checkStatsVisibility);
+        // Listener set up during initial scroll check
 
 
         // ==============================================
@@ -832,6 +859,8 @@
             modal.classList.remove('hidden');
             modal.classList.add('flex');
             contactForm.reset();
+            // Recalculate price to reset summary message
+            calculatePrice();
         });
 
         closeModalButton.addEventListener('click', function() {
@@ -858,7 +887,6 @@
             const locationMultiplier = parseFloat(locationSelect.value);
 
             // Simple Model: (Service Base Cost + (Hours - 1) * Hourly Rate) * Location Multiplier
-            // We subtract 1 hour because the serviceBase typically covers the first hour.
             const calculatedBase = serviceBase + Math.max(0, hours - 1) * BASE_RATE_PER_HOUR;
             const finalPrice = Math.round(calculatedBase * locationMultiplier / 1000) * 1000; // Round to nearest 1000
 
@@ -877,17 +905,6 @@
             messageTextarea.value = projectSummary;
         }
 
-        // Initialize calculator and set up listeners
-        document.addEventListener('DOMContentLoaded', () => {
-            calculatePrice(); // Calculate initial price on load
-            
-            // Re-calculate when any of the inputs change
-            document.getElementById('calc-service').addEventListener('change', calculatePrice);
-            document.getElementById('calc-hours').addEventListener('input', calculatePrice); // Use 'input' for smoother range updates
-            document.getElementById('calc-location').addEventListener('change', calculatePrice);
-        });
-
-
         // ==============================================
         // FEATURE 1: GALLERY FILTERING
         // ==============================================
@@ -897,6 +914,7 @@
         let filteredGalleryItems = Array.from(galleryItems);
 
         function updateFilteredItems() {
+            // Only include items that are currently visible (block)
             filteredGalleryItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
         }
 
@@ -940,9 +958,6 @@
             });
         });
         
-        window.addEventListener('load', initializeGalleryFilter);
-
-
         // ==============================================
         // FEATURE 10: LIGHTBOX NAVIGATION
         // ==============================================
@@ -961,6 +976,9 @@
             
             lightboxImage.src = item.getAttribute('data-src');
             lightboxCaption.textContent = item.getAttribute('data-caption');
+            // IMPORTANT SEO: Update alt text for the dynamically loaded image
+            lightboxImage.alt = item.querySelector('img').alt + ' - Full View'; 
+            
             lightboxModal.classList.remove('hidden');
             lightboxModal.classList.add('flex');
             document.body.style.overflow = 'hidden'; 
@@ -1008,6 +1026,12 @@
             } else if (e.key === 'Escape') {
                 closeLightbox();
             }
+        });
+        
+        // Initialize calculator and gallery filtering after DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            calculatePrice(); 
+            initializeGalleryFilter();
         });
     </script>
 </body>
