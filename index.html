@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABID MEHMOOD | Photography Portfolio V5</title>
+    <!-- Feature 16: SEO Meta Tags -->
+    <meta name="description" content="Professional photography portfolio of ABID MEHMOOD, showcasing landscape, portrait, and drone photography from Pakistan.">
+    <meta name="keywords" content="Abid Mehmood, Pakistan Photographer, Landscape, Portrait, Drone, Architectural Photography, Weddings, Commercial">
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind for custom colors and Inter font -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class', 
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-bg-base': '#0f0f11',
+                        'secondary-bg-base': '#1e1e21',
+                        'accent': 'var(--accent, #3b82f6)',
+                        'text-color': 'var(--text-color, #f3f4f6)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Feature 5: Initial CSS variables for Dark Mode */
+        :root {
+            --bg-primary: #0f0f11;
+            --bg-secondary: #1e1e21;
+            --accent: #3b82f6;
+            --text-color: #f3f4f6;
+            --shadow-color: rgba(59, 130, 246, 0.5);
+            --card-bg-opacity: 0.90; 
+            --scroll-bar-height: 4px; 
+        }
+        /* Light mode variables */
+        .light {
+            --bg-primary: #f8f8f8;
+            --bg-secondary: #ffffff;
+            --accent: #ff9900; 
+            --text-color: #1f2937;
+            --shadow-color: rgba(255, 153, 0, 0.5);
+            --card-bg-opacity: 0.90;
+        }
+
+        /* NEW FEATURE: High-Quality Background Image & Feature 25: Parallax Effect Base */
+        body {
+            /* URL points to a high-contrast, professional photography studio background */
+            background-image: url('https://images.unsplash.com/photo-1542038784457-cd3494d13c7c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Crucial for Parallax Effect */
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        /* Glassmorphism/Opacity Card Styles for Readability */
+        .bg-primary-bg { background-color: rgba(15, 15, 17, var(--card-bg-opacity)); }
+        .light .bg-primary-bg { background-color: rgba(248, 248, 248, var(--card-bg-opacity)); }
+        .bg-secondary-bg { background-color: rgba(30, 30, 33, var(--card-bg-opacity)); }
+        .light .bg-secondary-bg { background-color: rgba(255, 255, 255, var(--card-bg-opacity)); }
+
+        .page-content {
+            min-height: calc(100vh - 8rem);
+            padding-top: 5rem;
+            color: var(--text-color);
+        }
+        
+        main.page-container > section {
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Feature 26: Process Timeline Styles */
+        .process-step {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 2px solid var(--accent);
+        }
+        .process-step:last-child {
+            border-left: none; /* No line after the last step */
+            padding-bottom: 0;
+        }
+        .process-dot {
+            position: absolute;
+            top: 0;
+            left: -10px; 
+            width: 20px;
+            height: 20px;
+            background-color: var(--bg-secondary);
+            border: 4px solid var(--accent);
+            border-radius: 50%;
+            z-index: 20;
+        }
+
+        /* Feature 28: Lanyard Style Skill Badges */
+        .skill-badge {
+            background-color: var(--bg-secondary);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: all 0.2s;
+        }
+        .skill-badge:hover {
+            background-color: var(--accent);
+            color: var(--bg-secondary);
+            transform: scale(1.05);
+        }
+
+        /* Generic shared styles (Gallery, Typewriter, Preloader, etc.) */
+        .gallery-item { position: relative; overflow: hidden; cursor: pointer; border-radius: 0.5rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .gallery-item:hover { transform: translateY(-5px); box-shadow: 0 10px 20px var(--shadow-color); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3/2; transition: transform 0.5s, opacity 0.3s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s; padding: 1rem; text-align: center; }
+        .gallery-item:hover .overlay { opacity: 1; }
+        .testimonial-slider { scroll-snap-type: x mandatory; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .testimonial-slide { scroll-snap-align: start; flex: 0 0 100%; }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-primary); z-index: 10001; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease-out; }
+        .loader-spinner { border: 8px solid var(--bg-secondary); border-top: 8px solid var(--accent); border-radius: 50%; width: 60px; height: 60px; animation: spin 1.5s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .typewriter::after { content: '|'; display: inline-block; animation: blink 0.7s infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+        #scroll-progress-bar { height: var(--scroll-bar-height); background: var(--accent); width: 0%; position: fixed; top: 0; left: 0; z-index: 51; transition: background-color 0.3s; }
+        #floating-cta { position: fixed; bottom: 20px; right: 20px; z-index: 50; padding: 1rem 1.5rem; font-size: 1rem; font-weight: bold; border-radius: 9999px; background-color: var(--accent); color: white; box-shadow: 0 4px 10px var(--shadow-color); transition: transform 0.2s, background-color 0.2s; display: flex; align-items: center; }
+        #floating-cta:hover { transform: scale(1.05) translateY(-2px); opacity: 0.95; }
+
+        /* Feature 27: Pricing Calculator Specific Styles */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+            margin-top: -4px; 
+            box-shadow: 0 0 4px var(--shadow-color);
+        }
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="bg-primary-bg-base text-text-color font-sans antialiased">
+    
+    <!-- Feature 21: Scroll Progress Bar -->
+    <div id="scroll-progress-bar"></div>
+
+    <!-- Feature 6: Loading Indicator/Preloader -->
+    <div id="preloader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Feature 3 & 4: Header & Navigation (Fixed at the top) -->
+    <header id="main-header" class="fixed top-0 left-0 w-full z-50 bg-primary-bg/95 backdrop-blur-sm transition duration-300 border-b border-secondary-bg">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#home" class="text-3xl font-extrabold text-accent tracking-widest hover:text-text-color transition duration-200">ABID.</a>
+            
+            <!-- Desktop Navigation -->
+            <div class="space-x-4 hidden lg:flex">
+                <a href="#home" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Home</a>
+                <a href="#gallery" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Gallery</a>
+                <a href="#stats" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Achievements</a> 
+                <a href="#process" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">My Process</a> <!-- NEW -->
+                <a href="#blog" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Blog/Updates</a>
+                <a href="#about" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">About</a>
+                <a href="#hire-me" class="nav-link text-sm font-medium hover:text-accent transition duration-150 p-2 rounded-md">Hire Me</a> <!-- NEW/Updated -->
+            </div>
+            
+            <!-- Mobile Menu Button & Feature 5: Dark/Light Mode Toggle -->
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" aria-label="Toggle Dark/Light Mode" class="p-2 rounded-full text-text-color hover:bg-secondary-bg transition duration-150">
+                    <svg id="sun-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <button id="mobile-menu-button" class="lg:hidden p-2 rounded-md hover:bg-secondary-bg">
+                    <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-secondary-bg px-4 pb-3 border-t border-primary-bg">
+            <a href="#home" class="nav-link block py-2 px-3 text-base font-medium hover:bg-primary-bg transition duration-150 rounded-md">Home</a>
+            <a href="#gallery" class="nav-link block py-2 px-3 text-base font-medium hover:bg-primary-bg transition duration-150 rounded-md">Gallery</a>
+            <a href="#stats" class="nav-link block py-2 px-3 text-base font-medium hover:bg-primary-bg transition duration-150 rounded-md">Achievements</a>
+            <a href="#process" class="nav-link block py-2 px-3 text-base font-medium hover:bg-primary-bg transition duration-150 rounded-md">My Process</a>
+            <a href="#blog" class="nav-link block py-2 px-3 text-base font-medium hover:bg-primary-bg transition duration-150 rounded-md">Blog/Updates</a>
+            <a href="#about" class="nav-link block py-2 px-3 text-base font-medium hover:bg-primary-bg transition duration-150 rounded-md">About</a>
+            <a href="#hire-me" class="nav-link block py-2 px-3 text-base font-medium hover:bg-primary-bg transition duration-150 rounded-md">Hire Me</a>
+        </div>
+    </header>
+
+    <main class="page-container">
+        
+        <!-- ============================================== -->
+        <!-- 1. HOME PAGE -->
+        <!-- ============================================== -->
+        <section id="home" class="page-content active-page flex items-center justify-center text-center p-4 min-h-screen">
+            <div class="absolute inset-0 bg-black opacity-75"></div> 
+            <div class="relative z-10 max-w-5xl mx-auto py-24 md:py-32 lg:py-48 bg-primary-bg/80 p-6 rounded-xl backdrop-blur-sm shadow-2xl border border-accent/20">
+                <p class="text-xl font-light text-accent mb-4 uppercase tracking-widest">ABID's Lens</p>
+                <!-- Feature 8: Typewriter Effect Target -->
+                <h1 class="text-5xl sm:text-7xl font-extrabold mb-6 leading-tight text-white shadow-2xl">
+                    Visual Storytelling Through <span id="typewriter-text" class="text-accent typewriter"></span>
+                </h1>
+                <p class="text-lg sm:text-2xl font-light mb-10 max-w-3xl mx-auto">
+                    A curated collection of works reflecting the stunning diversity and unique moments from across Pakistan and beyond.
+                </p>
+                <a href="#gallery" class="inline-block px-10 py-3 text-lg font-semibold bg-accent text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-300 transform hover:scale-105">
+                    View My Work &rarr;
+                </a>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 2. GALLERY PAGE -->
+        <!-- ============================================== -->
+        <section id="gallery" class="page-content hidden py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
+                <h2 class="text-4xl font-bold text-center mb-6 border-b-2 border-accent inline-block pb-2 mx-auto">The Gallery</h2>
+                <p class="text-center mb-10 text-lg text-gray-400">Explore my curated projects across different visual disciplines.</p>
+
+                <!-- Feature 1: Category Filter Buttons (Modern Tab Style) -->
+                <div class="flex flex-wrap justify-center space-x-2 sm:space-x-4 mb-12 p-2 bg-secondary-bg rounded-xl shadow-inner">
+                    <button class="filter-btn px-4 py-2 my-2 text-sm font-medium rounded-lg bg-accent text-white hover:bg-blue-600 transition" data-filter="all">All</button>
+                    <button class="filter-btn px-4 py-2 my-2 text-sm font-medium rounded-lg bg-secondary-bg text-text-color hover:bg-gray-700 transition" data-filter="landscape">Landscape</button>
+                    <button class="filter-btn px-4 py-2 my-2 text-sm font-medium rounded-lg bg-secondary-bg text-text-color hover:bg-gray-700 transition" data-filter="portrait">Portrait</button>
+                    <button class="filter-btn px-4 py-2 my-2 text-sm font-medium rounded-lg bg-secondary-bg text-text-color hover:bg-gray-700 transition" data-filter="architecture">Architecture</button>
+                    <button class="filter-btn px-4 py-2 my-2 text-sm font-medium rounded-lg bg-secondary-bg text-text-color hover:bg-gray-700 transition" data-filter="drone">Aerial</button>
+                    <button class="filter-btn px-4 py-2 my-2 text-sm font-medium rounded-lg bg-secondary-bg text-text-color hover:bg-gray-700 transition" data-filter="conceptual">Conceptual</button>
+                    <button class="filter-btn px-4 py-2 my-2 text-sm font-medium rounded-lg bg-secondary-bg text-text-color hover:bg-gray-700 transition" data-filter="wedding">Wedding</button> 
+                </div>
+
+                <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                    <!-- CONTENT: Gallery Items (Placeholders) -->
+                    <div class="gallery-item" data-category="landscape" data-src="https://placehold.co/1200x800/40a08e/ffffff?text=Northern+Pakistan+-+Full+Resolution" data-caption="Mountain Passes: The dramatic beauty of Pakistan's north. (Landscape)">
+                        <img src="https://placehold.co/600x400/40a08e/ffffff?text=Northern+Pakistan" alt="Himalayan Mountains" class="rounded-lg" loading="lazy">
+                        <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Mountain Passes</h3><span class="text-accent text-xs mt-2">Landscape</span></div>
+                    </div>
+                    <div class="gallery-item" data-category="portrait" data-src="https://placehold.co/800x1200/8d49a1/ffffff?text=Candid+Shot+-+Full+Resolution" data-caption="Candid Gaze: A study in contrast and emotion. (Portrait)">
+                        <img src="https://placehold.co/600x400/8d49a1/ffffff?text=Candid+Shot" alt="Monochrome Portrait" class="rounded-lg" loading="lazy">
+                        <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Candid Gaze</h3><span class="text-accent text-xs mt-2">Portrait</span></div>
+                    </div>
+                    <div class="gallery-item" data-category="architecture" data-src="https://placehold.co/1200x800/2a52be/ffffff?text=Modern+Building+-+Full+Resolution" data-caption="Concrete Symmetry: Lines and light in Islamabad. (Architecture)">
+                        <img src="https://placehold.co/600x400/2a52be/ffffff?text=Modern+Building" alt="Geometric Building" class="rounded-lg" loading="lazy">
+                        <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Concrete Symmetry</h3><span class="text-accent text-xs mt-2">Architecture</span></div>
+                    </div>
+                    <div class="gallery-item" data-category="drone" data-src="https://placehold.co/1200x800/000000/3b82f6?text=River+Delta+Aerial+-+Full+Resolution" data-caption="River Delta: Abstract patterns seen from above. (Drone/Aerial)">
+                        <img src="https://placehold.co/600x400/000000/3b82f6?text=River+Delta+Aerial" alt="River Delta Aerial" class="rounded-lg" loading="lazy">
+                        <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">River Delta</h3><span class="text-accent text-xs mt-2">Drone/Aerial</span></div>
+                    </div>
+                    <div class="gallery-item" data-category="wedding" data-src="https://placehold.co/800x1200/e91e63/ffffff?text=Wedding+Couple+-+Full+Resolution" data-caption="The Promise: A heartfelt moment from a client's wedding. (Wedding)">
+                        <img src="https://placehold.co/600x400/e91e63/ffffff?text=Wedding+Couple" alt="Wedding Couple" class="rounded-lg" loading="lazy">
+                        <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">The Promise</h3><span class="text-accent text-xs mt-2">Wedding</span></div>
+                    </div>
+                    <div class="gallery-item" data-category="conceptual" data-src="https://placehold.co/1200x800/ff7f50/ffffff?text=Motion+Blur+Conceptual+-+Full+Resolution" data-caption="The Veil of Time: Long exposure conceptual work. (Conceptual)">
+                        <img src="https://placehold.co/600x400/ff7f50/ffffff?text=Motion+Blur+Conceptual" alt="Conceptual Motion Blur" class="rounded-lg" loading="lazy">
+                        <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">The Veil of Time</h3><span class="text-accent text-xs mt-2">Conceptual</span></div>
+                    </div>
+                    <div class="gallery-item" data-category="landscape" data-src="https://placehold.co/1200x800/2962ff/ffffff?text=Desert+Sunset+-+Full+Resolution" data-caption="Desert Hues: Golden hour light over the Thal Desert. (Landscape)">
+                        <img src="https://placehold.co/600x400/2962ff/ffffff?text=Desert+Sunset" alt="Desert Sunset" class="rounded-lg" loading="lazy">
+                        <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Desert Hues</h3><span class="text-accent text-xs mt-2">Landscape</span></div>
+                    </div>
+                    <div class="gallery-item" data-category="architecture" data-src="https://placehold.co/1200x800/4caf50/ffffff?text=Mughal+Architecture+-+Full+Resolution" data-caption="Mughal Detail: Intricate tile work from Lahore Fort. (Architecture)">
+                        <img src="https://placehold.co/600x400/4caf50/ffffff?text=Mughal+Architecture" alt="Mughal Architecture" class="rounded-lg" loading="lazy">
+                        <div class="overlay rounded-lg"><h3 class="text-xl font-bold mb-1">Mughal Detail</h3><span class="text-accent text-xs mt-2">Architecture</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 3. KEY ACHIEVEMENTS (Feature 23: Statistics Counter) -->
+        <!-- ============================================== -->
+        <section id="stats" class="page-content hidden py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-secondary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
+                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">Key Achievements</h2>
+                <p class="text-center mb-10 text-lg text-gray-400 max-w-2xl mx-auto">Numbers tell a story of dedication, experience, and scale.</p>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    
+                    <!-- Stat 1 -->
+                    <div class="p-4">
+                        <div class="text-5xl font-extrabold text-accent mb-2">
+                            <span class="counter" data-target="150">0</span>+
+                        </div>
+                        <p class="text-lg font-medium text-gray-300">Projects Completed</p>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="p-4">
+                        <div class="text-5xl font-extrabold text-accent mb-2">
+                            <span class="counter" data-target="7">0</span>
+                        </div>
+                        <p class="text-lg font-medium text-gray-300">Years Experience</p>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="p-4">
+                        <div class="text-5xl font-extrabold text-accent mb-2">
+                            <span class="counter" data-target="22">0</span>
+                        </div>
+                        <p class="text-lg font-medium text-gray-300">Cities Photographed</p>
+                    </div>
+
+                    <!-- Stat 4 -->
+                    <div class="p-4">
+                        <div class="text-5xl font-extrabold text-accent mb-2">
+                            <span class="counter" data-target="100000">0</span>+
+                        </div>
+                        <p class="text-lg font-medium text-gray-300">Images Delivered</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 4. NEW SECTION: MY PROCESS (Feature 26) -->
+        <!-- ============================================== -->
+        <section id="process" class="page-content hidden py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
+                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">My Creative Process</h2>
+                <p class="text-center mb-10 text-lg text-gray-400 max-w-2xl mx-auto">From initial concept to final delivery, here's how we bring your vision to life.</p>
+
+                <div class="max-w-3xl mx-auto grid md:grid-cols-2 gap-y-12 gap-x-12">
+                    
+                    <!-- Step 1: Consultation -->
+                    <div class="process-step pb-12">
+                        <div class="process-dot"></div>
+                        <h3 class="text-2xl font-bold text-accent mb-2">1. Consultation & Concept</h3>
+                        <p class="text-gray-300">We start with a detailed chat to understand your goals, creative direction, and logistical needs. This defines the core concept and moodboard.</p>
+                    </div>
+                    
+                    <!-- Step 2: Planning & Logistics -->
+                    <div class="process-step pb-12">
+                        <div class="process-dot"></div>
+                        <h3 class="text-2xl font-bold text-accent mb-2">2. Planning & Logistics</h3>
+                        <p class="text-gray-300">I handle all necessary permits, scouting, and equipment prep. For commercial projects, this includes finalizing shot lists and scheduling models/assistants.</p>
+                    </div>
+
+                    <!-- Step 3: The Shoot -->
+                    <div class="process-step pb-12">
+                        <div class="process-dot"></div>
+                        <h3 class="text-2xl font-bold text-accent mb-2">3. The Session/Shoot</h3>
+                        <p class="text-gray-300">The moment of execution. I focus on technical excellence and ensuring a comfortable, high-energy environment to capture authentic moments and required shots.</p>
+                    </div>
+
+                    <!-- Step 4: Post-Production & Delivery -->
+                    <div class="process-step pb-12">
+                        <div class="process-dot"></div>
+                        <h3 class="text-2xl font-bold text-accent mb-2">4. Post-Production & Delivery</h3>
+                        <p class="text-gray-300">Meticulous selection, professional color grading, and retouching are performed. Final images are delivered via a secure, high-speed online gallery.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- 5. BLOG/UPDATES SECTION -->
+        <!-- ============================================== -->
+        <section id="blog" class="page-content hidden py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
+                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">Latest Updates & Blog</h2>
+                <p class="text-center mb-10 text-lg text-gray-400 max-w-2xl mx-auto">Stay up to date with my latest projects, gear reviews, and personal insights on visual storytelling.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Post 1: Latest Project -->
+                    <div class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x300/e0f7fa/000000?text=K2+Base+Camp" alt="K2 Base Camp Expedition" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-sm font-semibold text-accent uppercase">Expedition</span>
+                            <h3 class="text-xl font-bold mt-1 mb-3">Documenting the K2 Base Camp Trek</h3>
+                            <p class="text-gray-400 text-sm line-clamp-3">A four-week journey capturing the raw, untamed beauty of the Karakoram range, facing extreme conditions for the perfect shot.</p>
+                            <a href="#" class="text-accent hover:text-white font-medium mt-3 inline-block text-sm">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Post 2: Gear Review -->
+                    <div class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x300/cfd8dc/000000?text=Gear+Review" alt="Nikon Z9 Review" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-sm font-semibold text-accent uppercase">Gear Review</span>
+                            <h3 class="text-xl font-bold mt-1 mb-3">Nikon Z-Series: The New Standard for Landscape</h3>
+                            <p class="text-gray-400 text-sm line-clamp-3">My honest thoughts on switching to mirrorless and how the Z9 has revolutionized my field work in low light and high altitudes.</p>
+                            <a href="#" class="text-accent hover:text-white font-medium mt-3 inline-block text-sm">Read More &rarr;</a>
+                        </div>
+                    </div>
+                    <!-- Post 3: Tutorial -->
+                    <div class="bg-secondary-bg rounded-xl shadow-lg overflow-hidden border border-gray-700 transform hover:scale-[1.02] transition duration-300">
+                        <img src="https://placehold.co/600x300/e1bee7/000000?text=Editing+Tips" alt="Post Processing Tutorial" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <span class="text-sm font-semibold text-accent uppercase">Tutorial</span>
+                            <h3 class="text-xl font-bold mt-1 mb-3">Mastering the Dramatic Sky in Post-Processing</h3>
+                            <p class="text-gray-400 text-sm line-clamp-3">Step-by-step guide to enhancing color, contrast, and detail in sunset and storm clouds using advanced masking techniques.</p>
+                            <a href="#" class="text-accent hover:text-white font-medium mt-3 inline-block text-sm">Read More &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 6. ABOUT PAGE (With Feature 28: Skill Badges) -->
+        <!-- ============================================== -->
+        <section id="about" class="page-content hidden py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
+                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">About ABID MEHMOOD</h2>
+                <div class="md:flex md:space-x-12 items-start">
+                    <div class="w-full md:w-1/3 mb-8 md:mb-0 flex justify-center">
+                        <img src="https://placehold.co/350x350/3b82f6/0f0f11?text=ABID" alt="ABID MEHMOOD Profile" class="rounded-xl w-64 h-64 object-cover border-4 border-accent shadow-2xl">
+                    </div>
+                    <div class="w-full md:w-2/3 text-lg space-y-5">
+                        <p>
+                            My name is **Abid Mehmood**, and I am a professional photographer based in **Pakistan**. My journey behind the lens began over seven years ago, fueled by a passion for documenting life's fleeting moments and the stunning diversity of our world.
+                        </p>
+                        <p class="font-semibold text-xl text-accent">The Philosophy: Capturing Emotional Truth</p>
+                        <p>
+                            I believe the best photographs are not just records of what the camera sees, but interpretations of what the heart feels. My work is dedicated to uncovering the emotional truth hidden beneath the surface.
+                        </p>
+                        
+                        <div class="mt-8 pt-4 border-t border-secondary-bg">
+                            <h3 class="text-xl font-bold mb-3 text-accent">Skills & Expertise</h3>
+                            <!-- Feature 28: Skill Badges -->
+                            <div class="flex flex-wrap gap-2 text-sm">
+                                <span class="skill-badge px-3 py-1 rounded-full">Adobe Lightroom</span>
+                                <span class="skill-badge px-3 py-1 rounded-full">Advanced Retouching</span>
+                                <span class="skill-badge px-3 py-1 rounded-full">Natural Light Mastery</span>
+                                <span class="skill-badge px-3 py-1 rounded-full">DJI Certified Pilot</span>
+                                <span class="skill-badge px-3 py-1 rounded-full">Commercial Direction</span>
+                                <span class="skill-badge px-3 py-1 rounded-full">Cinematic Video</span>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 border-t border-secondary-bg pt-4">
+                            <p class="text-sm font-medium text-gray-400">Preferred Gear</p>
+                            <p class="text-base">Nikon Z-Series Mirrorless | 24-70mm f/2.8 & 70-200mm f/4 | DJI Mavic 3 Pro Drone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ============================================== -->
+        <!-- 7. HIRE ME: PRICING & INTERACTIVE CALCULATOR (Feature 27) -->
+        <!-- ============================================== -->
+        <section id="hire-me" class="page-content hidden py-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 bg-primary-bg p-8 rounded-xl shadow-2xl border border-accent/20">
+                <h2 class="text-4xl font-bold text-center mb-12 border-b-2 border-accent inline-block pb-2 mx-auto">Interactive Pricing & Booking</h2>
+                
+                <p class="text-center mb-8 text-xl font-medium text-gray-300">Estimate your project cost instantly with our configurator.</p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+                    
+                    <!-- LEFT COLUMN: INTERACTIVE CALCULATOR (Feature 27) -->
+                    <div class="bg-secondary-bg p-6 rounded-xl shadow-xl border border-gray-700">
+                        <h3 class="text-2xl font-bold text-accent mb-6 border-b border-gray-700 pb-2">Project Estimator</h3>
+
+                        <div class="space-y-6">
+                            <!-- Input 1: Service Type -->
+                            <div>
+                                <label for="calc-service" class="block text-lg font-medium text-gray-300 mb-2">1. Primary Service Area</label>
+                                <select id="calc-service" class="w-full p-3 rounded-lg bg-primary-bg border border-gray-700 focus:border-accent" onchange="calculatePrice()">
+                                    <option value="10000" selected>Basic Portrait (Starting PKR 10,000)</option>
+                                    <option value="40000">Commercial Campaign (Starting PKR 40,000)</option>
+                                    <option value="60000">Wedding Coverage (Starting PKR 60,000)</option>
+                                    <option value="25000">Drone/Aerial Assignment (Starting PKR 25,000)</option>
+                                </select>
+                            </div>
+
+                            <!-- Input 2: Number of Hours -->
+                            <div>
+                                <label for="calc-hours" class="block text-lg font-medium text-gray-300 mb-2">2. Estimated Time (Hours): <span id="hours-display" class="font-bold text-accent">4</span></label>
+                                <input type="range" id="calc-hours" min="1" max="10" value="4" step="1" oninput="document.getElementById('hours-display').textContent=this.value; calculatePrice()" onchange="calculatePrice()">
+                            </div>
+
+                            <!-- Input 3: Location Complexity -->
+                            <div>
+                                <label for="calc-location" class="block text-lg font-medium text-gray-300 mb-2">3. Location & Travel Complexity</label>
+                                <select id="calc-location" class="w-full p-3 rounded-lg bg-primary-bg border border-gray-700 focus:border-accent" onchange="calculatePrice()">
+                                    <option value="1.0" selected>Local (No Extra Charge)</option>
+                                    <option value="1.2">Outstation (20% Surcharge)</option>
+                                    <option value="1.5">International (50% Surcharge)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Price Output -->
+                        <div class="mt-8 pt-4 border-t border-gray-700">
+                            <p class="text-xl font-medium text-gray-300 mb-2">Estimated Price (PKR):</p>
+                            <div class="text-5xl font-extrabold text-accent">
+                                <span id="final-price">PKR 40,000</span>
+                            </div>
+                            <p class="text-sm text-gray-400 mt-2">*This is an estimate. Final pricing requires a detailed consultation.</p>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: CONTACT FORM (Booking) -->
+                    <div class="bg-secondary-bg p-6 rounded-xl shadow-xl border border-accent/30">
+                        <h3 class="text-2xl font-bold text-accent mb-6 border-b border-gray-700 pb-2">Final Booking Request</h3>
+                        <form id="contact-form" class="space-y-4">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                                <input type="text" id="name" name="name" class="w-full p-3 rounded-lg bg-primary-bg border border-gray-700 focus:border-accent" placeholder="Your Name" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full p-3 rounded-lg bg-primary-bg border border-gray-700 focus:border-accent" placeholder="your.email@example.com" required>
+                            </div>
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Project Summary (Mention calculated price)</label>
+                                <textarea id="message" name="message" rows="5" class="w-full p-3 rounded-lg bg-primary-bg border border-gray-700 focus:border-accent" placeholder="I am interested in the [Service] with an estimated cost of [Price]..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full py-3 bg-accent text-white font-bold rounded-lg hover:bg-blue-600 transition duration-300 transform hover:scale-[1.01] shadow-md">
+                                Send Consultation Request
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <!-- Feature 24: Floating Quick Contact Button -->
+    <a href="#hire-me" id="floating-cta">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l5-2 5 2-2 5zm0 0l-2 5L9 9l5-2 5 2-2 5zM4 12h.01M10 4h.01M20 12h.01M10 20h.01"></path></svg>
+        Get Quote
+    </a>
+
+    <!-- Custom Modals (Confirmation and Lightbox) -->
+    <div id="confirmation-modal" class="fixed inset-0 bg-black bg-opacity-80 z-[9999] hidden flex items-center justify-center p-4">
+        <div class="bg-secondary-bg p-8 rounded-xl shadow-2xl max-w-sm w-full text-center border border-accent">
+            <svg class="w-12 h-12 text-accent mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <h3 class="text-xl font-bold mb-2">Request Sent!</h3>
+            <p class="text-gray-300 mb-6">Thank you. I will contact you within 24 hours to finalize your project details.</p>
+            <button id="close-modal-button" class="py-2 px-6 bg-accent text-white font-medium rounded-full hover:bg-blue-600 transition">Close</button>
+        </div>
+    </div>
+    
+    <!-- Image Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-black bg-opacity-95 z-[10000] hidden flex items-center justify-center p-4 transition-opacity duration-300" onclick="closeLightbox()">
+        <div class="relative max-w-7xl max-h-[90vh] w-full" onclick="event.stopPropagation()">
+            <button id="lightbox-prev" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl p-4 opacity-70 hover:opacity-100 transition z-20" aria-label="Previous Image">&lt;</button>
+            <button id="lightbox-next" class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl p-4 opacity-70 hover:opacity-100 transition z-20" aria-label="Next Image">&gt;</button>
+            <button onclick="closeLightbox()" class="absolute top-4 right-4 text-white text-4xl font-light opacity-80 hover:opacity-100 transition z-20 p-2 rounded-full bg-black/50" aria-label="Close Lightbox">&times;</button>
+            
+            <div class="bg-secondary-bg rounded-lg shadow-2xl overflow-hidden relative">
+                <img id="lightbox-image" src="" alt="Full size photo" class="w-full h-auto object-contain max-h-[75vh]">
+                <div class="absolute bottom-6 left-6 text-xl font-bold text-white/50 pointer-events-none">&copy; ABID.MEHMOOD</div>
+                <div class="p-4 text-center"><p id="lightbox-caption" class="text-lg text-gray-300"></p></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer with Required Details -->
+    <footer class="bg-black/95 py-8 border-t border-secondary-bg">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400 text-sm">
+            <p>&copy; <span id="year"></span> ABID MEHMOOD Photography. All rights reserved.</p>
+            <div class="mt-4 space-y-1 sm:space-y-0 sm:space-x-8 flex flex-col sm:flex-row justify-center items-center">
+                <p class="font-bold text-accent">ABID MEHMOOD</p>
+                <p>Location: Pakistan</p>
+                <p>WhatsApp: <a href="https://wa.me/923029382306" class="hover:text-accent transition duration-150">03029382306</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Feature 4: Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-20 right-6 p-3 bg-accent text-white rounded-full shadow-lg hover:bg-blue-600 transition duration-300 hidden z-40" aria-label="Back to Top">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+
+    <script>
+        // ==============================================
+        // FEATURE 29: DEBOUNCE UTILITY FOR PERFORMANCE
+        // ==============================================
+        function debounce(func, delay) {
+            let timeout;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(context, args), delay);
+            };
+        }
+
+        // ==============================================
+        // GLOBAL SETUP & UTILITIES
+        // ==============================================
+        document.getElementById('year').textContent = new Date().getFullYear();
+        document.getElementById('preferred-date').min = new Date().toISOString().split('T')[0];
+
+        // Feature 6: Preloader Hide Logic
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 500);
+        });
+
+        // ==============================================
+        // FEATURE 2: SMOOTH SCROLLING & NAVIGATION LOGIC
+        // ==============================================
+
+        const pages = document.querySelectorAll('.page-content');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function showPage(pageId) {
+            pages.forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('active-page');
+            });
+
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                targetPage.classList.add('active-page');
+            }
+            
+            navLinks.forEach(link => {
+                link.classList.remove('text-accent', 'border-b-2', 'border-accent');
+                if (link.getAttribute('href') === '#' + pageId) {
+                    link.classList.add('text-accent', 'border-b-2', 'border-accent');
+                }
+            });
+        }
+
+        function handleHashChange() {
+            const hash = window.location.hash.substring(1) || 'home';
+            showPage(hash);
+            if (hash !== 'home') {
+                const targetElement = document.getElementById(hash);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, 
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        }
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                window.location.hash = targetId; // Change hash, triggering handleHashChange
+            });
+        });
+
+        window.addEventListener('load', handleHashChange);
+        window.addEventListener('hashchange', handleHashChange);
+
+        document.getElementById('mobile-menu-button').addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+        mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+
+
+        // ==============================================
+        // FEATURE 3, 4, 21, & 24: SCROLL EFFECTS 
+        // ==============================================
+        const header = document.getElementById('main-header');
+        const backToTopButton = document.getElementById('back-to-top');
+        const scrollProgressBar = document.getElementById('scroll-progress-bar');
+        const floatingCta = document.getElementById('floating-cta');
+
+        function updateScrollEffects() {
+            const scrollY = window.scrollY;
+
+            // Header Shadow
+            header.classList.toggle('shadow-xl', scrollY > 50);
+
+            // Back to Top Button visibility
+            backToTopButton.classList.toggle('hidden', scrollY <= 300);
+
+            // Scroll Progress Indicator
+            const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollY / totalHeight) * 100;
+            scrollProgressBar.style.width = scrollPercent + "%";
+            
+            // Floating CTA visibility
+            const hireMeSection = document.getElementById('hire-me');
+            if (hireMeSection && hireMeSection.classList.contains('active-page')) {
+                 floatingCta.style.display = 'none';
+            } else {
+                floatingCta.style.display = 'flex';
+            }
+
+            // Check Stats visibility for counter animation
+            checkStatsVisibility();
+        }
+        
+        // Use debounced function for performance (Feature 29)
+        const debouncedUpdateScrollEffects = debounce(updateScrollEffects, 10);
+        window.addEventListener('scroll', debouncedUpdateScrollEffects);
+        window.addEventListener('resize', debouncedUpdateScrollEffects); 
+        window.addEventListener('load', debouncedUpdateScrollEffects);
+
+        backToTopButton.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+
+        // ==============================================
+        // FEATURE 5: DARK/LIGHT MODE TOGGLE
+        // ==============================================
+        const themeToggle = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+
+        function applyTheme(isLight) {
+            document.documentElement.classList.toggle('light', isLight);
+            moonIcon.classList.toggle('hidden', isLight);
+            sunIcon.classList.toggle('hidden', !isLight);
+            localStorage.theme = isLight ? 'light' : 'dark';
+        }
+
+        const isSystemLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+        const initialLight = (localStorage.theme === 'light') || (!('theme' in localStorage) && isSystemLight);
+        applyTheme(initialLight);
+
+        themeToggle.addEventListener('click', () => {
+            const isLight = document.documentElement.classList.contains('light');
+            applyTheme(!isLight);
+        });
+
+
+        // ==============================================
+        // FEATURE 8: TYPEWRITER EFFECT
+        // ==============================================
+        const typewriterTextElement = document.getElementById('typewriter-text');
+        const phrases = ["Photography", "Nature's Beauty", "Human Stories", "Architectural Lines"];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (!isDeleting && charIndex < currentPhrase.length) {
+                typewriterTextElement.textContent += currentPhrase.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else if (isDeleting && charIndex > 0) {
+                typewriterTextElement.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(typeWriter, 50);
+            } else if (!isDeleting && charIndex === currentPhrase.length) {
+                isDeleting = true;
+                setTimeout(typeWriter, 1500);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(typeWriter, 500);
+            }
+        }
+        
+        window.addEventListener('load', typeWriter);
+
+
+        // ==============================================
+        // FEATURE 23: SCROLL COUNTER ANIMATION
+        // ==============================================
+        function animateCounter(element, target) {
+            let start = 0;
+            const duration = 2000; 
+            const startTime = performance.now();
+
+            function updateCounter(timestamp) {
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const value = Math.floor(progress * target);
+                element.textContent = value.toLocaleString();
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target.toLocaleString();
+                }
+            }
+            requestAnimationFrame(updateCounter);
+        }
+
+        const statsSection = document.getElementById('stats');
+        const counters = document.querySelectorAll('.counter');
+        let animationTriggered = false;
+
+        function checkStatsVisibility() {
+            if (animationTriggered) return;
+            const rect = statsSection.getBoundingClientRect();
+            const isInView = (rect.top <= (window.innerHeight || document.documentElement.clientHeight) && rect.bottom >= 0);
+
+            if (isInView) {
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    animateCounter(counter, target);
+                });
+                animationTriggered = true;
+                // Since this is called by debouncedUpdateScrollEffects, no need to remove separate listener.
+            }
+        }
+        
+        window.addEventListener('load', checkStatsVisibility);
+
+
+        // ==============================================
+        // CONTACT FORM & MODAL LOGIC
+        // ==============================================
+
+        const contactForm = document.getElementById('contact-form');
+        const modal = document.getElementById('confirmation-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            contactForm.reset();
+        });
+
+        closeModalButton.addEventListener('click', function() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        });
+
+
+        // ==============================================
+        // FEATURE 27: INTERACTIVE PRICING CALCULATOR
+        // ==============================================
+
+        const BASE_RATE_PER_HOUR = 8000; // Base hourly rate in PKR
+
+        function calculatePrice() {
+            const serviceSelect = document.getElementById('calc-service');
+            const hoursInput = document.getElementById('calc-hours');
+            const locationSelect = document.getElementById('calc-location');
+            const finalPriceDisplay = document.getElementById('final-price');
+            const messageTextarea = document.getElementById('message');
+
+            const serviceBase = parseFloat(serviceSelect.value);
+            const hours = parseInt(hoursInput.value);
+            const locationMultiplier = parseFloat(locationSelect.value);
+
+            // Simple Model: (Service Base Cost + (Hours - 1) * Hourly Rate) * Location Multiplier
+            // We subtract 1 hour because the serviceBase typically covers the first hour.
+            const calculatedBase = serviceBase + Math.max(0, hours - 1) * BASE_RATE_PER_HOUR;
+            const finalPrice = Math.round(calculatedBase * locationMultiplier / 1000) * 1000; // Round to nearest 1000
+
+            // Format price with commas
+            const formattedPrice = finalPrice.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'PKR',
+                minimumFractionDigits: 0
+            });
+            
+            finalPriceDisplay.textContent = formattedPrice;
+
+            // Pre-populate the message field
+            const serviceName = serviceSelect.options[serviceSelect.selectedIndex].text.split('(')[0].trim();
+            const projectSummary = `I am interested in the ${serviceName} service for ${hours} hours. The estimated cost is ${formattedPrice}. I would like to schedule a call to discuss the project further.`;
+            messageTextarea.value = projectSummary;
+        }
+
+        // Initialize calculator and set up listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            calculatePrice(); // Calculate initial price on load
+            
+            // Re-calculate when any of the inputs change
+            document.getElementById('calc-service').addEventListener('change', calculatePrice);
+            document.getElementById('calc-hours').addEventListener('input', calculatePrice); // Use 'input' for smoother range updates
+            document.getElementById('calc-location').addEventListener('change', calculatePrice);
+        });
+
+
+        // ==============================================
+        // FEATURE 1: GALLERY FILTERING
+        // ==============================================
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        const defaultFilter = 'all'; 
+        let filteredGalleryItems = Array.from(galleryItems);
+
+        function updateFilteredItems() {
+            filteredGalleryItems = Array.from(galleryItems).filter(item => item.style.display !== 'none');
+        }
+
+        function applyFilter(filter) {
+            galleryItems.forEach(item => {
+                const itemCategory = item.getAttribute('data-category');
+                item.style.display = (filter === 'all' || itemCategory === filter) ? 'block' : 'none';
+            });
+            updateFilteredItems(); 
+        }
+
+        function initializeGalleryFilter() {
+            let initialFilter = localStorage.getItem('abid_gallery_filter') || defaultFilter;
+            
+            filterButtons.forEach(btn => {
+                const filter = btn.getAttribute('data-filter');
+                const isActive = (filter === initialFilter);
+                
+                btn.classList.toggle('bg-accent', isActive);
+                btn.classList.toggle('text-white', isActive);
+                btn.classList.toggle('bg-secondary-bg', !isActive);
+                btn.classList.toggle('text-text-color', !isActive);
+            });
+
+            applyFilter(initialFilter);
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-accent', 'text-white');
+                    btn.classList.add('bg-secondary-bg', 'text-text-color');
+                });
+                button.classList.add('bg-accent', 'text-white');
+                button.classList.remove('bg-secondary-bg', 'text-text-color');
+
+                applyFilter(filter);
+                localStorage.setItem('abid_gallery_filter', filter);
+            });
+        });
+        
+        window.addEventListener('load', initializeGalleryFilter);
+
+
+        // ==============================================
+        // FEATURE 10: LIGHTBOX NAVIGATION
+        // ==============================================
+        let currentImageIndex = 0;
+        const lightboxModal = document.getElementById('lightbox-modal');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        const prevButton = document.getElementById('lightbox-prev');
+        const nextButton = document.getElementById('lightbox-next');
+
+        function openLightbox(index) {
+            if (filteredGalleryItems.length === 0) return;
+
+            currentImageIndex = index;
+            const item = filteredGalleryItems[currentImageIndex];
+            
+            lightboxImage.src = item.getAttribute('data-src');
+            lightboxCaption.textContent = item.getAttribute('data-caption');
+            lightboxModal.classList.remove('hidden');
+            lightboxModal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; 
+
+            const displayNav = filteredGalleryItems.length > 1 ? 'block' : 'none';
+            prevButton.style.display = displayNav;
+            nextButton.style.display = displayNav;
+        }
+
+        function closeLightbox() {
+            lightboxModal.classList.add('hidden');
+            lightboxModal.classList.remove('flex');
+            document.body.style.overflow = '';
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % filteredGalleryItems.length;
+            openLightbox(currentImageIndex);
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + filteredGalleryItems.length) % filteredGalleryItems.length;
+            openLightbox(currentImageIndex);
+        }
+
+        galleryItems.forEach((item) => {
+            item.addEventListener('click', () => {
+                updateFilteredItems(); 
+                const itemIndexInFiltered = filteredGalleryItems.indexOf(item);
+                if (itemIndexInFiltered !== -1) {
+                    openLightbox(itemIndexInFiltered);
+                }
+            });
+        });
+
+        prevButton.addEventListener('click', (e) => { e.stopPropagation(); showPrevImage(); });
+        nextButton.addEventListener('click', (e) => { e.stopPropagation(); showNextImage(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (lightboxModal.classList.contains('hidden')) { return; }
+            if (e.key === 'ArrowRight') {
+                showNextImage();
+            } else if (e.key === 'ArrowLeft') {
+                showPrevImage();
+            } else if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
+
